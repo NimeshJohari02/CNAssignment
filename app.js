@@ -1,5 +1,4 @@
 console.log("Hello");
-// events?event_category=ALL_EVENTS&event_sub_category=Upcoming&page=1
 const mainUrl = `https://www.getpostman.com/collections/9c0340a9587dc4823aa9`;
 const url2 = `https://api.codingninjas.com/api/v3/events`;
 const eventTags = `https://api.codingninjas.com/api/v3/event_tags`;
@@ -45,14 +44,20 @@ getCardsArray = (arr) => {
         </div>
         <p class="card-text">${el.short_desc}</p>
         <div class ="row">
-        <div class="col-lg-8"></div>
+        <div class="col-lg-8">
+        </div>
         <a href="" class="col-lg-4 btn btn-primary">Register Now</a>
               </div>
         </div>
-</div>
-            `;
+</div>`;
   });
   str += `</div>
       </div>`;
   document.getElementById("main-content").innerHTML = str;
+};
+getUserListOnCard = (arr) => {
+  let str = ``;
+  arr.top_users.forEach((el) => {
+    str += `<img src ="${el.image_url} alt ="${el.name}">`;
+  });
 };
