@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      integrity="undefined"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class ="p-3 ">
+      <div class = "p-3 row">
+    <div class="container left-pane col-lg-10">
+      <div class="main-category">
+        <button value="ALL_EVENT" class="event-type">All Events</button>
+        <button value="WEBINAR" class="event-type">Webinar</button>
+        <button value="CODING_EVENT" class="event-type">Bootcamp Events</button>
+        <button value="WORKSHOP" class="event-type">Workshop</button>
+      </div>
+      <div class="sub-category">
+        <button value="Upcoming" class="sub-category-button">Upcoming</button>
+        <button value="Archived" class="sub-category-button">Archives</button>
+      </div>
+      <div id="main-content"></div>
+    </div>
+    <div class="container col-lg-2 right-pane">
+      <h2>Tags</h2>
+      <ul class ="list-group">
+      <div id="Tags"></div>
+   </ul>
+    </div>
+    <div>
+  </body>
+  <script src="./app.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="undefined"
+    crossorigin="anonymous"
+  ></script>
+</html>
