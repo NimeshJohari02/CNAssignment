@@ -79,6 +79,16 @@ const getTags = (arr) => {
 let currURL = `${url2}/?event_category=ALL_EVENT&event_sub_category=Upcoming&tag_list=&offset=1`;
 document.getElementById("EventsDiv").addEventListener("click", (evt) => {
   const clicked = evt.target.getAttribute("value");
+  const arr = document.getElementById("EventsDiv");
+  for (let i = 0; i < arr.children.length; i++) {
+    if (clicked == arr.children[i].getAttribute("value")) {
+      arr.children[i].classList.remove("normal-link");
+      arr.children[i].classList.add("active-link");
+    } else {
+      arr.children[i].classList.add("normal-link");
+    }
+  }
+
   currURL = `${url2}/?event_category=${clicked}&event_sub_category=Upcoming&tag_list=&offset=1`;
   fetch(currURL)
     .then((res) => res.json())
@@ -89,6 +99,15 @@ document.getElementById("EventsDiv").addEventListener("click", (evt) => {
 document.getElementById("timeframe").addEventListener("click", (evt) => {
   const clicked = evt.target.getAttribute("value");
   let arr = currURL.split("&");
+  let color = document.getElementById("timeframe");
+  for (let i = 0; i < color.children.length; i++) {
+    if (clicked == color.children[i].getAttribute("value")) {
+      color.children[i].classList.remove("normal-link");
+      color.children[i].classList.add("active-link");
+    } else {
+      color.children[i].classList.add("normal-link");
+    }
+  }
   // evt.target.classList.toggle("btn-warning");
   let givenUrl = `${arr[0]}&event_sub_category=${clicked}&${arr[2]}&${arr[3]}`;
   tense = clicked;

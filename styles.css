@@ -1,3 +1,6 @@
+body {
+  background-color: #fcfcfc;
+}
 .avatar {
   vertical-align: middle;
   width: 30px;
@@ -12,6 +15,12 @@ a {
 .active-link {
   color: #fa752c;
 }
+.normal-link {
+  color: #bdbdbd;
+}
 .hide {
   display: none;
+}
+.timediv {
+  background-color: #fcfcfc;
 }
