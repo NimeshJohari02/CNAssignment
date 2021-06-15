@@ -88,7 +88,6 @@ document.getElementById("EventsDiv").addEventListener("click", (evt) => {
       arr.children[i].classList.add("normal-link");
     }
   }
-
   currURL = `${url2}/?event_category=${clicked}&event_sub_category=Upcoming&tag_list=&offset=1`;
   fetch(currURL)
     .then((res) => res.json())
@@ -108,7 +107,6 @@ document.getElementById("timeframe").addEventListener("click", (evt) => {
       color.children[i].classList.add("normal-link");
     }
   }
-  // evt.target.classList.toggle("btn-warning");
   let givenUrl = `${arr[0]}&event_sub_category=${clicked}&${arr[2]}&${arr[3]}`;
   tense = clicked;
   currURL = givenUrl;

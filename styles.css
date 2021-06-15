@@ -24,3 +24,7 @@ a {
 .timediv {
   background-color: #fcfcfc;
 }
+.centre-div {
+  display: flex;
+  justify-content: center;
+}
