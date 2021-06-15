@@ -71,7 +71,7 @@ getUserListOnCard = (arr) => {
 const getTags = (arr) => {
   let str = ``;
   arr.forEach((el) => {
-    str += `<li class ="list-group-item"><a class="btn btn-light">${el}</a> </li>`;
+    str += `<li class ="list-group-item"><a class="btn btn-light" value="${el}">${el}</a> </li>`;
   });
   document.getElementById("Tags").innerHTML = str;
 };
@@ -94,6 +94,27 @@ document.getElementById("timeframe").addEventListener("click", (evt) => {
   console.log(arr);
   let givenUrl = `${arr[0]}&event_sub_category=${clicked}&${arr[2]}&${arr[3]}`;
   currURL = givenUrl;
+  fetch(currURL)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.data.events);
+      getCardsArray(data.data.events);
+    });
+});
+let selectedCategories = [];
+document.getElementById("Tags").addEventListener("click", (evt) => {
+  console.log("Tags Pane Clicked");
+  let arr = currURL.split("&");
+  evt.target.classList.add("btn-dark");
+  selectedCategories.push(evt.target.getAttribute("value"));
+  let tagsStr = `tag_list=`;
+  selectedCategories.forEach((el) => {
+    tagsStr += `${el.replace(" ", "%20")},`;
+  });
+  tagsStr += `&`;
+  currURL = `${arr[0]}&${arr[1]}&${tagsStr}${arr[3]}`;
+  console.log(tagsStr);
+  console.log(currURL);
   fetch(currURL)
     .then((res) => res.json())
     .then((data) => {
