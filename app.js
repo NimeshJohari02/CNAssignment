@@ -28,7 +28,7 @@ getCardsArray = (arr) => {
   arr.forEach((el) => {
     var d = new Date();
     d.setUTCSeconds(el.event_start_time);
-    console.log(d);
+    // console.log(d);
     str += `
             <div class=" p-4 card col-lg-6"> 
     <img class="card-img-top" src="${el.cover_picture}" alt="Card image cap">
@@ -103,10 +103,16 @@ document.getElementById("timeframe").addEventListener("click", (evt) => {
 });
 let selectedCategories = [];
 document.getElementById("Tags").addEventListener("click", (evt) => {
-  console.log("Tags Pane Clicked");
+  const selection = evt.target.getAttribute("value");
   let arr = currURL.split("&");
-  evt.target.classList.add("btn-dark");
-  selectedCategories.push(evt.target.getAttribute("value"));
+  evt.target.classList.toggle("btn-dark");
+  if (selectedCategories.indexOf(selection) == -1) {
+    selectedCategories.push(evt.target.getAttribute("value"));
+  } else {
+    selectedCategories.splice(selectedCategories.indexOf(selection), 1);
+  }
+
+  selectedCategories = [...new Set(selectedCategories)];
   let tagsStr = `tag_list=`;
   selectedCategories.forEach((el) => {
     tagsStr += `${el.replace(" ", "%20")},`;
