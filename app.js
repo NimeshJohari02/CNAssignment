@@ -1,4 +1,5 @@
 const url2 = `https://api.codingninjas.com/api/v3/events`;
+let tense = "Upcoming";
 const eventTags = `https://api.codingninjas.com/api/v3/event_tags`;
 window.onload = function () {
   fetch(eventTags)
@@ -18,7 +19,6 @@ window.onload = function () {
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.data.events);
       getCardsArray(data.data.events);
     });
 };
@@ -28,9 +28,8 @@ getCardsArray = (arr) => {
   arr.forEach((el) => {
     var d = new Date();
     d.setUTCSeconds(el.event_start_time);
-    // console.log(d);
     str += `
-            <div class=" p-4 card col-lg-6"> 
+            <div class="p-2 m-2 card col-lg-5"> 
     <img class="card-img-top" src="${el.cover_picture}" alt="Card image cap">
      <div class="card-body">
         <h5 class="card-title">${el.name}</h5>
@@ -50,7 +49,9 @@ getCardsArray = (arr) => {
         ${getUserListOnCard(el.registered_users)}
         </div>
         <a href="" class="
-         col-lg-4 btn btn-primary">Register Now</a>
+         col-lg-4 btn btn-primary ${
+           tense === "Archived" ? "hide" : ""
+         }">Register Now</a>
               </div>
 ${el.registered_users.other_users_count}  Registered
         </div>
@@ -82,22 +83,19 @@ document.getElementById("EventsDiv").addEventListener("click", (evt) => {
   fetch(currURL)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.data.events);
       getCardsArray(data.data.events);
     });
 });
 document.getElementById("timeframe").addEventListener("click", (evt) => {
   const clicked = evt.target.getAttribute("value");
-  console.log(clicked);
   let arr = currURL.split("&");
-
-  console.log(arr);
+  // evt.target.classList.toggle("btn-warning");
   let givenUrl = `${arr[0]}&event_sub_category=${clicked}&${arr[2]}&${arr[3]}`;
+  tense = clicked;
   currURL = givenUrl;
   fetch(currURL)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.data.events);
       getCardsArray(data.data.events);
     });
 });
@@ -119,12 +117,9 @@ document.getElementById("Tags").addEventListener("click", (evt) => {
   });
   tagsStr += `&`;
   currURL = `${arr[0]}&${arr[1]}&${tagsStr}${arr[3]}`;
-  console.log(tagsStr);
-  console.log(currURL);
   fetch(currURL)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.data.events);
       getCardsArray(data.data.events);
     });
 });
