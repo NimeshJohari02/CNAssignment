@@ -26,6 +26,9 @@ getCardsArray = (arr) => {
   let str = `<div class ="card-deck" >
       <div class = "row" >`;
   arr.forEach((el) => {
+    var d = new Date();
+    d.setUTCSeconds(el.event_start_time);
+    console.log(d);
     str += `
             <div class=" p-4 card col-lg-6"> 
     <img class="card-img-top" src="${el.cover_picture}" alt="Card image cap">
@@ -37,7 +40,7 @@ getCardsArray = (arr) => {
          <p class="col-lg-4 card-text"><small class="text-muted">Venue </small></p>
         </div>
         <div class="row">
-              <p class="card-text col-lg-4">${}</p>
+              <p class="card-text col-lg-4">${d.toString().split("GMT")[0]}</p>
               <p class="card-text col-lg-4">${el.fees}</p>
               <p class="card-text col-lg-4">${el.venue}</p>
         </div>
@@ -46,9 +49,8 @@ getCardsArray = (arr) => {
         <div class="col-lg-8">
         ${getUserListOnCard(el.registered_users)}
         </div>
-        <a href="" class="${
-          Date.now() - el.event_start_time > 0 ? "hide" : ""
-        } col-lg-4 btn btn-primary">Register Now</a>
+        <a href="" class="
+         col-lg-4 btn btn-primary">Register Now</a>
               </div>
 ${el.registered_users.other_users_count}  Registered
         </div>
